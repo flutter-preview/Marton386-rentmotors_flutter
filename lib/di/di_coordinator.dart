@@ -1,0 +1,73 @@
+import 'package:get_it/get_it.dart';
+import '../utils/header_helper.dart';
+import '../data/storage/network_storage.dart';
+import '../domain/repository/res_repository.dart';
+import '../domain/repository/org_repository.dart';
+import '../domain/repository/car_repository.dart';
+import '../domain/repository/book_repository.dart';
+import '../data/storage/network_storage_impl.dart';
+import '../data/repository/res_repository_impl.dart';
+import '../data/repository/org_repository_impl.dart';
+import '../data/repository/car_repository_impl.dart';
+import '../domain/repository/voucher_repository.dart';
+import '../domain/repository/station_repository.dart';
+import '../domain/repository/payment_repository.dart';
+import '../data/repository/book_repository_impl.dart';
+import '../presentation/viewModels/org_view_model.dart';
+import '../presentation/viewModels/map_view_model.dart';
+import '../domain/interactors/car_interactor_impl.dart';
+import '../domain/interactors/org_interactor_impl.dart';
+import '../domain/interactors/res_interactor_impl.dart';
+import '../presentation/interactors/res_interactor.dart';
+import '../presentation/interactors/org_interactor.dart';
+import '../presentation/interactors/car_interactor.dart';
+import '../data/repository/voucher_repository_impl.dart';
+import '../data/repository/station_repository_impl.dart';
+import '../data/repository/payment_repository_impl.dart';
+import '../domain/interactors/book_interactor_impl.dart';
+import '../presentation/viewModels/page_view_model.dart';
+import '../presentation/interactors/book_interactor.dart';
+import '../domain/repository/check_client_repository.dart';
+import '../presentation/viewModels/profile_view_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../domain/interactors/voucher_interactor_impl.dart';
+import '../domain/interactors/station_interactor_impl.dart';
+import '../presentation/viewModels/station_view_model.dart';
+import '../presentation/interactors/station_interactor.dart';
+import '../presentation/interactors/voucher_interactor.dart';
+import '../data/repository/check_client_repository_impl.dart';
+import '../presentation/viewModels/search_car_view_model.dart';
+import '../presentation/viewModels/modify_res_view_model.dart';
+import '../presentation/viewModels/booking_view_model.dart';
+
+final get = GetIt.instance;
+
+void setupGetIt() {
+  get.registerSingletonAsync<SharedPreferences>(
+          () => SharedPreferences.getInstance()
+  );
+  get.registerLazySingleton<HeaderHelper>(() => HeaderHelper());
+  get.registerFactory<NetworkStorage>(() => NetworkStorageImpl());
+  get.registerFactory<CarRepository>(() => CarRepositoryImpl());
+  get.registerFactory<OrgRepository>(() => OrgRepositoryImpl());
+  get.registerFactory<ResRepository>(() => ResRepositoryImpl());
+  get.registerFactory<BookRepository>(() => BookRepositoryImpl());
+  get.registerFactory<VoucherRepository>(() => VoucherRepositoryImpl());
+  get.registerFactory<StationRepository>(() => StationRepositoryImpl());
+  get.registerFactory<PaymentRepository>(() => PaymentRepositoryImpl());
+  get.registerFactory<CheckClientRepository>(() => CheckClientRepositoryImpl());
+  get.registerFactory<BookInteractor>(() => BookInteractorImpl());
+  get.registerFactory<CarInteractor>(() => CarInteractorImpl());
+  get.registerFactory<OrgInteractor>(() => OrgInteractorImpl());
+  get.registerFactory<ResInteractor>(() => ResInteractorImpl());
+  get.registerFactory<StationInteractor>(() => StationInteractorImpl());
+  get.registerFactory<VoucherInteractor>(() => VoucherInteractorImpl());
+  get.registerLazySingleton<OrgViewModel>(() => OrgViewModel());
+  get.registerLazySingleton<MapViewModel>(() => MapViewModel());
+  get.registerLazySingleton<PageViewModel>(() => PageViewModel());
+  get.registerLazySingleton<StationViewModel>(() => StationViewModel());
+  get.registerLazySingleton<ProfileViewModel>(() => ProfileViewModel());
+  get.registerLazySingleton<ModifyResViewModel>(() => ModifyResViewModel());
+  get.registerLazySingleton<SearchCarViewModel>(() => SearchCarViewModel());
+  get.registerLazySingleton<BookingViewModel>(() => BookingViewModel());
+}
