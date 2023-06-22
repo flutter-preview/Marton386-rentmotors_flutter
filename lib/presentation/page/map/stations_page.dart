@@ -32,7 +32,7 @@ class _StationsPageState extends State<StationsPage> {
         child: AppBar(
           centerTitle: true,
           title: Image.asset(
-            'assets/pictures/RMNavBar.png',
+            'assets/pictures/logo.png',
             width: Global.logoWith,
             fit: BoxFit.contain,
           ),

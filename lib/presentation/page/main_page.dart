@@ -106,7 +106,7 @@ class _MainPageState extends State<MainPage> {
           appBar: AppBar(
             title: Center(
               child: Image.asset(
-                'assets/pictures/RMNavBar.png',
+                'assets/pictures/logo.png',
                 width: Global.logoWith,
               ),
             ),
@@ -163,7 +163,7 @@ class _MainPageState extends State<MainPage> {
           appBar: AppBar(
             title: Center(
               child: Image.asset(
-                'assets/pictures/RMNavBar.png',
+                'assets/pictures/logo.png',
                 width: Global.logoWith,
               ),
             ),

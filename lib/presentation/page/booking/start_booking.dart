@@ -38,7 +38,7 @@ class _StartBookingPageState extends State<StartBookingPage> {
       appBar: AppBar(
         title: Center(
           child: Image.asset(
-            'assets/pictures/RMNavBar.png',
+            'assets/pictures/logo.png',
             width: Global.logoWith,
           ),
         ),
