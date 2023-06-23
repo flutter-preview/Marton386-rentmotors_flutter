@@ -14,7 +14,7 @@ part 'regular_booking_event.dart';
 part 'regular_booking_state.dart';
 
 class RegularBookingBloc extends Bloc<RegularBookingEvent, RegularBookingState>{
-  final BookingViewModel startBookViewModel = GetIt
+  final BookingViewModel bookViewModel = GetIt
       .instance<BookingViewModel>();
   final BookInteractor bookInteractor = GetIt.instance<BookInteractor>();
 
@@ -24,36 +24,37 @@ class RegularBookingBloc extends Bloc<RegularBookingEvent, RegularBookingState>{
       try {
         Result<PresentationClientInfo> result = await bookInteractor
             .checkClient(
-          startBookViewModel.surnameController.text,
-          startBookViewModel.emailController.text,
+          bookViewModel.surnameController.text,
+          bookViewModel.emailController.text,
         );
         if (result is Success<PresentationClientInfo>) {
+          bookViewModel.reallyLoaded = true;
           if(result.data.customerId == -1) {
-            startBookViewModel.newClient = 1;
-            startBookViewModel.idClient = null;
+            bookViewModel.newClient = 1;
+            bookViewModel.idClient = null;
             emit(const RegularBookingState.loaded());
           } else {
-            startBookViewModel.newClient = 0;
-            startBookViewModel.idClient = result.data.customerId;
+            bookViewModel.newClient = 0;
+            bookViewModel.idClient = result.data.customerId;
             //начинаем аренду
-            if (startBookViewModel.organization == null) {
-              PresentationBookingRequest request = startBookViewModel
+            if (bookViewModel.organization == null) {
+              PresentationBookingRequest request = bookViewModel
                   .getRegularBookRequest();
               Result<PresentationBook> result2 = await bookInteractor
                   .book(request);
               if (result2 is Success<PresentationBook>) {
-                startBookViewModel.bookResult = result2.data;
+                bookViewModel.bookResult = result2.data;
                 emit(const RegularBookingState.loaded());
               } else if(result2 is Error<PresentationBook>) {
                 emit(RegularBookingState.error(error: result2.errorCode));
               }
             } else {
-              PresentationBookingOrgRequest request = startBookViewModel
+              PresentationBookingOrgRequest request = bookViewModel
                   .getRegularBookOrgRequest();
               Result<PresentationBook> result2 = await bookInteractor
                   .orgBook(request);
               if (result2 is Success<PresentationBook>) {
-                startBookViewModel.bookResult = result2.data;
+                bookViewModel.bookResult = result2.data;
                 emit(const RegularBookingState.loaded());
               } else if(result2 is Error<PresentationBook>) {
                 emit(RegularBookingState.error(error: result2.errorCode));

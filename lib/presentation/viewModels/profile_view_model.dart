@@ -4,6 +4,7 @@ import '../models/responses/presentation_reservation_response.dart';
 class ProfileViewModel {
   String? savedEmail;
   bool saveEmail = false;
+  bool firstNotFound = false;
   PresentationReservationResponse? reservation;
   final emailController = TextEditingController();
   final reservationController = TextEditingController();
@@ -28,5 +29,25 @@ class ProfileViewModel {
     str += " ${reservation?.clientInfo.lastName ?? ""}";
     str += " ${reservation?.clientInfo.patronymic ?? ""}";
     return str;
+  }
+
+  bool checkInput() {
+    bool checker = false;
+    if ((savedEmail == null &&
+        emailController.text == "") ||
+        (savedEmail != null &&
+            saveEmail &&
+            emailController.text == "") ||
+        (reservationController.text == "")) {
+      checker = true;
+    }
+    if ((emailController.text.isNotEmpty) && ((saveEmail && (savedEmail!=null))
+        || (savedEmail==null))) {
+      checker = !emailController.text.contains('@');
+      if (!checker) {
+        checker = !emailController.text.contains('.');
+      }
+    }
+    return checker;
   }
 }

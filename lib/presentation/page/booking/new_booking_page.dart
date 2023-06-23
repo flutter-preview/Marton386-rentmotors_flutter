@@ -27,6 +27,7 @@ class _NewBookingPageState extends State<NewBookingPage> {
 
   @override
   Widget build(BuildContext context) {
+    bookViewModel.reallyLoaded = false;
     final stateBook = context.watch<NewBookingBloc>().state;
     return Scaffold(
       appBar: PreferredSize(
@@ -48,29 +49,6 @@ class _NewBookingPageState extends State<NewBookingPage> {
               Text(
                 LocaleKeys.personal_information.tr(),
                 style: Global.switchText,
-              ),
-              AnimatedCrossFade(
-                duration: const Duration(milliseconds: 200),
-                crossFadeState: !bookViewModel.fromRussia ?
-                CrossFadeState.showFirst :
-                CrossFadeState.showSecond,
-                firstChild: Container(),
-                secondChild: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const SizedBox(height: 10),
-                    Text(
-                      LocaleKeys.patronymic.tr(),
-                      style: Global.searchText,
-                    ),
-                    const SizedBox(height: 5),
-                    SearchTextField(
-                      necessarily: true,
-                      showIcon: false,
-                      controller: bookViewModel.patronymicController,
-                    ),
-                  ],
-                ),
               ),
               const SizedBox(height: 10),
               Text(
@@ -103,6 +81,7 @@ class _NewBookingPageState extends State<NewBookingPage> {
                   ),
                   child: SearchTextField(
                     enabled: false,
+                    showClear: false,
                     type: TextInputType.datetime,
                     necessarily: true,
                     showIcon: false,
@@ -117,27 +96,10 @@ class _NewBookingPageState extends State<NewBookingPage> {
                 style: Global.switchText,
               ),
               const SizedBox(height: 10),
-              SwitchListTile(
-                contentPadding: const EdgeInsets.only(
-                    left: 0, right: 0, top: 0, bottom: 0),
-                value: bookViewModel.fromRussia,
-                onChanged: (value) => setState(() {
-                  bookViewModel.changeFromRussia(value);
-                }),
-                title: Text(
-                  LocaleKeys.citizenship_rf.tr(),
-                  style: Global.switchText,
-                ),
-                activeColor: Global.darkGreen,
-                activeTrackColor: Global.green,
-                inactiveThumbColor: Global.grayExtraLight,
-                inactiveTrackColor: Global.grayLight,
-              ),
-              const SizedBox(height: 10),
               Row(
                 children: [
                   Expanded(
-                    flex: 4,
+                    flex: 5,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -156,7 +118,7 @@ class _NewBookingPageState extends State<NewBookingPage> {
                   ),
                   const SizedBox(width: 15),
                   Expanded(
-                    flex: 3,
+                    flex: 4,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -192,6 +154,7 @@ class _NewBookingPageState extends State<NewBookingPage> {
                             ),
                             child: SearchTextField(
                               enabled: false,
+                              showClear: false,
                               type: TextInputType.datetime,
                               necessarily: true,
                               showIcon: false,
@@ -282,7 +245,7 @@ class _NewBookingPageState extends State<NewBookingPage> {
               Row(
                 children: [
                   Expanded(
-                    flex: 4,
+                    flex: 5,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -302,7 +265,7 @@ class _NewBookingPageState extends State<NewBookingPage> {
                   ),
                   const SizedBox(width: 15),
                   Expanded(
-                    flex: 3,
+                    flex: 4,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -338,6 +301,7 @@ class _NewBookingPageState extends State<NewBookingPage> {
                             ),
                             child: SearchTextField(
                               enabled: false,
+                              showClear: false,
                               type: TextInputType.datetime,
                               necessarily: true,
                               showIcon: false,
@@ -351,23 +315,6 @@ class _NewBookingPageState extends State<NewBookingPage> {
                     ),
                   ),
                 ],
-              ),
-              const SizedBox(height: 40),
-              Text(
-                LocaleKeys.contact_data.tr(),
-                style: Global.switchText,
-              ),
-              const SizedBox(height: 10),
-              Text(
-                LocaleKeys.phone.tr(),
-                style: Global.searchText,
-              ),
-              const SizedBox(height: 5),
-              SearchTextField(
-                type: TextInputType.phone,
-                necessarily: true,
-                showIcon: false,
-                controller: bookViewModel.phoneController,
               ),
               const SizedBox(height: 40),
               stateBook.when(

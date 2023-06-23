@@ -37,15 +37,19 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
               result.data.status == 3) {
             emit(const ProfileState.successLoaded());
           } else {
+            profViewModel.firstNotFound = true;
             emit(ProfileState.error(error: LocaleKeys.your_res_no_found.tr()));
           }
         } else if (result is Error<PresentationReservationResponse>) {
+          profViewModel.firstNotFound = true;
           String error = result.errorCode;
           emit(ProfileState.error(error: error));
         } else {
+          profViewModel.firstNotFound = true;
           emit(ProfileState.error(error: LocaleKeys.failure.tr()));
         }
       } catch (e) {
+        profViewModel.firstNotFound = true;
         emit(ProfileState.error(error: e.toString()));
       }
     });

@@ -63,6 +63,7 @@ class BookingViewModel {
   //Check client
   int? newClient;
   int? idClient;
+  bool reallyLoaded = false;
 
   void changeFromRussia(bool value) {
     fromRussia = value;
@@ -178,19 +179,86 @@ class BookingViewModel {
     return finAmount;
   }
 
+  bool isValidWord(String name) {
+    RegExp regExp = RegExp(r'^[a-zA-Zа-яА-Я\s\-]+$');
+    return regExp.hasMatch(name) &&
+        !name.startsWith(' ') &&
+        !name.startsWith('-') &&
+        !name.endsWith(' ') &&
+        !name.endsWith('-') &&
+        !name.contains('  ') &&
+        !name.contains('--');
+  }
+
+  bool isValidNumber(String number) {
+    RegExp regExp = RegExp(r'^[0-9\s]+$');
+    return regExp.hasMatch(number) &&
+        !number.startsWith(' ') &&
+        !number.endsWith(' ') &&
+        !number.contains('  ');
+  }
+
+  bool isBorderValidNumber(String str) {
+    RegExp regExp = RegExp(r'^[0-9a-zA-Z\s\-]+$');
+    return regExp.hasMatch(str) &&
+        !str.startsWith(' ') &&
+        !str.startsWith('-') &&
+        !str.endsWith(' ') &&
+        !str.endsWith('-') &&
+        !str.contains('  ') &&
+        !str.contains('--');
+  }
+
+  bool isValidNormalStr(String surname) {
+    RegExp regExp = RegExp(r'^[0-9a-zA-Zа-яА-Я\s\-\.\,\/]+$');
+    return regExp.hasMatch(surname) &&
+        !surname.startsWith(' ') &&
+        !surname.startsWith('-') &&
+        !surname.startsWith('.') &&
+        !surname.startsWith(',') &&
+        !surname.startsWith('/') &&
+        !surname.endsWith(' ') &&
+        !surname.endsWith('-') &&
+        !surname.endsWith('.') &&
+        !surname.endsWith(',') &&
+        !surname.endsWith('/') &&
+        !surname.contains('  ') &&
+        !surname.contains('--') &&
+        !surname.contains('..') &&
+        !surname.contains(',,') &&
+        !surname.contains('//');
+  }
+
   //Regular booking page
   bool checkInputValues() {
     bool checker = emailController.text.contains('@');
     if (surnameController.text.isEmpty) {
       checker = false;
     }
+    if (!isValidWord(surnameController.text)) {
+      checker = false;
+    }
     if (nameController.text.isEmpty) {
+      checker = false;
+    }
+    if (!isValidWord(nameController.text)) {
+      checker = false;
+    }
+    if (phoneController.text.isEmpty) {
       checker = false;
     }
     if (checker) {
       checker = emailController.text.contains('.');
     }
     if (organizationRent && (organization == null)) {
+      checker = false;
+    }
+    if (fromRussia) {
+      if(patronymicController.text.isEmpty) {
+        checker = false;
+      }
+    }
+    if (!isValidWord(patronymicController.text) && patronymicController.text.isNotEmpty) {
       checker = false;
     }
     return checker;
@@ -271,21 +339,31 @@ class BookingViewModel {
       checker = false;
     } else if (driverDateOfIssueController.text.isEmpty) {
       checker = false;
-    } else if (phoneController.text.isEmpty) {
+    } else if (!isValidNumber(driverSeriesAndNumberController.text)) {
       checker = false;
     }
     if (fromRussia) {
-      if(patronymicController.text.isEmpty) {
+      if(birthPlaceController.text.isEmpty) {
         checker = false;
-      } else if(birthPlaceController.text.isEmpty) {
+      } else if(!isValidNormalStr(birthPlaceController.text)) {
         checker = false;
       } else if(issuePassportController.text.isEmpty) {
         checker = false;
+      } else if(!isValidNormalStr(issuePassportController.text)) {
+        checker = false;
       } else if(registerAddressController.text.isEmpty) {
+        checker = false;
+      } else if(!isValidNormalStr(registerAddressController.text)) {
+        checker = false;
+      } else if(!isValidNumber(seriesAndNumberController.text)) {
         checker = false;
       }
     } else {
       if(passportCountryController.text.isEmpty) {
+        checker = false;
+      } else if(!isBorderValidNumber(seriesAndNumberController.text)) {
+        checker = false;
+      } else if(!isValidNormalStr(passportCountryController.text)) {
         checker = false;
       }
     }

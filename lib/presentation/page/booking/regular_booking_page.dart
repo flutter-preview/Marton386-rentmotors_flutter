@@ -71,6 +71,40 @@ class _RegularBookingPageState extends State<RegularBookingPage> {
                 showIcon: false,
                 controller: bookViewModel.nameController,
               ),
+              const SizedBox(height: 10),
+              Text(
+                LocaleKeys.patronymic.tr(),
+                style: Global.searchText,
+              ),
+              const SizedBox(height: 5),
+              if(bookViewModel.fromRussia)
+                SearchTextField(
+                  necessarily: true,
+                  showIcon: false,
+                  controller: bookViewModel.patronymicController,
+                ),
+              if(!bookViewModel.fromRussia)
+                SearchTextField(
+                  showIcon: false,
+                  controller: bookViewModel.patronymicController,
+                ),
+              const SizedBox(height: 10),
+              SwitchListTile(
+                contentPadding: const EdgeInsets.only(
+                    left: 0, right: 0, top: 0, bottom: 0),
+                value: bookViewModel.fromRussia,
+                onChanged: (value) => setState(() {
+                  bookViewModel.changeFromRussia(value);
+                }),
+                title: Text(
+                  LocaleKeys.citizenship_rf.tr(),
+                  style: Global.switchText,
+                ),
+                activeColor: Global.darkGreen,
+                activeTrackColor: Global.green,
+                inactiveThumbColor: Global.grayExtraLight,
+                inactiveTrackColor: Global.grayLight,
+              ),
               const SizedBox(height: 40),
               Text(
                 LocaleKeys.contact_data.tr(),
@@ -87,6 +121,18 @@ class _RegularBookingPageState extends State<RegularBookingPage> {
                 necessarily: true,
                 showIcon: false,
                 controller: bookViewModel.emailController,
+              ),
+              const SizedBox(height: 10),
+              Text(
+                LocaleKeys.phone.tr(),
+                style: Global.searchText,
+              ),
+              const SizedBox(height: 5),
+              SearchTextField(
+                type: TextInputType.phone,
+                necessarily: true,
+                showIcon: false,
+                controller: bookViewModel.phoneController,
               ),
               const SizedBox(height: 10),
               Text(
@@ -239,25 +285,29 @@ class _RegularBookingPageState extends State<RegularBookingPage> {
                   return const LoadingButtonWidget();
                 },
                 loaded: () {
-                  if (bookViewModel.newClient == 1) {
-                    //переходим на экран создания нового клиента
-                    Future.delayed(
-                      Duration.zero,
-                      () => Navigator.pushNamed(
-                        context,
-                        "mainPage/searchCars/chooseExtras/regularBook/newBook",
-                      ),
-                    );
-                  } else if ((bookViewModel.newClient == 0) && (bookViewModel
-                      .bookResult != null)) {
-                    //переходим на экран завершения аренды
-                    Future.delayed(
-                      Duration.zero,
-                      () => Navigator.of(context).pushNamedAndRemoveUntil(
-                        "mainPage/searchCars/chooseExtras/regularBook/doneBook",
-                        (Route<dynamic> route) => false,
-                      ),
-                    );
+                  if (bookViewModel.reallyLoaded) {
+                    if (bookViewModel.newClient == 1) {
+                      //переходим на экран создания нового клиента
+                      Future.delayed(
+                        Duration.zero,
+                            () =>
+                            Navigator.pushNamed(
+                              context,
+                              "mainPage/searchCars/chooseExtras/regularBook/newBook",
+                            ),
+                      );
+                    } else if ((bookViewModel.newClient == 0) && (bookViewModel
+                        .bookResult != null)) {
+                      //переходим на экран завершения аренды
+                      Future.delayed(
+                        Duration.zero,
+                            () =>
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                              "mainPage/searchCars/chooseExtras/regularBook/doneBook",
+                                  (Route<dynamic> route) => false,
+                            ),
+                      );
+                    }
                   }
                   return NextButtonWidget(
                     text: LocaleKeys.next.tr(),

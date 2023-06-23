@@ -7,8 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/profile_bloc/profile_bloc.dart';
 import '../viewModels/profile_view_model.dart';
 
-class LoadButtonWidget extends StatelessWidget {
-  LoadButtonWidget({
+class LoadButtonWidget extends StatefulWidget {
+  const LoadButtonWidget({
     Key? key,
     required this.text,
     required this.whatFunc,
@@ -23,6 +23,12 @@ class LoadButtonWidget extends StatelessWidget {
   final VoidCallback buttonAct;
   final bool Function() checkAct;
   final VoidCallback nothingFoundAct;
+
+  @override
+  State<LoadButtonWidget> createState() => _LoadButtonWidgetState();
+}
+
+class _LoadButtonWidgetState extends State<LoadButtonWidget> {
   final ProfileViewModel profViewModel = GetIt.instance<ProfileViewModel>();
 
   @override
@@ -32,9 +38,9 @@ class LoadButtonWidget extends StatelessWidget {
       loaded: () {
         return ElevatedButton(
           onPressed: () {
-            if (checkAct()) {
-              buttonAct();
-              blocFunc(context, whatFunc);
+            if (widget.checkAct()) {
+              widget.buttonAct();
+              blocFunc(context, widget.whatFunc);
             }
           },
           style: ButtonStyle(
@@ -53,18 +59,18 @@ class LoadButtonWidget extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all<Color>(Global.orange),
             foregroundColor: MaterialStateProperty.all<Color>(Global.backgroundLightTheme),
           ),
-          child: Text(text.toUpperCase()),
+          child: Text(widget.text.toUpperCase()),
         );
       },
       successLoaded: () {
         if (profViewModel.reservation != null) {
-          Future.delayed(Duration.zero, () => Navigator.pushNamed(context, navRoute));
+          Future.delayed(Duration.zero, () => Navigator.pushNamed(context, widget.navRoute));
         }
         return ElevatedButton(
           onPressed: () {
-            if (checkAct()) {
-              buttonAct();
-              blocFunc(context, whatFunc);
+            if (widget.checkAct()) {
+              widget.buttonAct();
+              blocFunc(context, widget.whatFunc);
             }
           },
           style: ButtonStyle(
@@ -83,7 +89,7 @@ class LoadButtonWidget extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all<Color>(Global.orange),
             foregroundColor: MaterialStateProperty.all<Color>(Global.backgroundLightTheme),
           ),
-          child: Text(text.toUpperCase()),
+          child: Text(widget.text.toUpperCase()),
         );
       },
       loading: () {
@@ -112,12 +118,12 @@ class LoadButtonWidget extends StatelessWidget {
         );
       },
       nothingFound: () {
-        Future.delayed(Duration.zero, () => nothingFoundAct());
+        Future.delayed(Duration.zero, () => widget.nothingFoundAct());
         return ElevatedButton(
           onPressed: () {
-            if (checkAct()) {
-              buttonAct();
-              blocFunc(context, whatFunc);
+            if (widget.checkAct()) {
+              widget.buttonAct();
+              blocFunc(context, widget.whatFunc);
             }
           },
           style: ButtonStyle(
@@ -136,16 +142,20 @@ class LoadButtonWidget extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all<Color>(Global.orange),
             foregroundColor: MaterialStateProperty.all<Color>(Global.backgroundLightTheme),
           ),
-          child: Text(text.toUpperCase()),
+          child: Text(widget.text.toUpperCase()),
         );
       },
       error: (String error) {
-        Future.delayed(Duration.zero, () => AlertsShower.showAlert(context, error));
+        if (profViewModel.firstNotFound) {
+          Future.delayed(Duration.zero, () => AlertsShower.showAlert(context,
+              error));
+          profViewModel.firstNotFound = false;
+        }
         return ElevatedButton(
           onPressed: () {
-            if (checkAct()) {
-              buttonAct();
-              blocFunc(context, whatFunc);
+            if (widget.checkAct()) {
+              widget.buttonAct();
+              blocFunc(context, widget.whatFunc);
             }
           },
           style: ButtonStyle(
@@ -164,7 +174,7 @@ class LoadButtonWidget extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all<Color>(Global.orange),
             foregroundColor: MaterialStateProperty.all<Color>(Global.backgroundLightTheme),
           ),
-          child: Text(text.toUpperCase()),
+          child: Text(widget.text.toUpperCase()),
         );
       },
     );

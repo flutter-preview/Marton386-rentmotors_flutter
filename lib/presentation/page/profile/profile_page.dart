@@ -146,12 +146,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 navRoute: 'mainPage/myRes',
                 text: LocaleKeys.findRes.tr(),
                 checkAct: () {
-                  if ((profViewModel.savedEmail == null &&
-                      profViewModel.emailController.text == "") ||
-                      (profViewModel.savedEmail != null &&
-                          profViewModel.saveEmail &&
-                          profViewModel.emailController.text == "") ||
-                      (profViewModel.reservationController.text == "")) {
+                  if (profViewModel.checkInput()) {
                     AlertsShower.showAlert(
                         context, LocaleKeys.not_all_fields_filled.tr());
                     return false;

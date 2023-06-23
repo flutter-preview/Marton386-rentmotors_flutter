@@ -12,11 +12,13 @@ class SearchTextField extends StatefulWidget {
     required this.controller,
     this.type,
     this.enabled,
+    this.showClear,
     this.focusNode,
     this.necessarily,
   });
   final bool? enabled;
   final bool showIcon;
+  final bool? showClear;
   final String? hintText;
   final bool? necessarily;
   final TextInputType? type;
@@ -67,7 +69,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           },
         ): null :
-        IconButton(
+        (widget.showClear == null) ? IconButton(
           icon: const Icon(Icons.cancel),
           color: Global.getIconColor(context),
           onPressed: () {
@@ -76,7 +78,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
               _isTextFieldEmpty = true;
             });
           },
-        ),
+        ) : null,
         hintText: widget.hintText ?? "",
         hintStyle: Global.getHintStyle(context),
         border: const OutlineInputBorder(),
@@ -92,7 +94,6 @@ class _SearchTextFieldState extends State<SearchTextField> {
             color: Global.getBorderColor(context),
           ),
         ),
-
       ),
       cursorColor: Global.green,
     );
