@@ -41,7 +41,7 @@ class _BookingDetailsPageState extends State<BookingDetailsPage> {
           children: [
             CarInfoWidget(
               car: startBookViewModel.car!,
-              countDays: 3,
+              countDays: startBookViewModel.getCountDays(),
             ),
             const SizedBox(height: 10),
             DatesWidget(

@@ -264,13 +264,27 @@ class BookingViewModel {
     return checker;
   }
 
+  int daysBetween(DateTime from, DateTime to) {
+    return (to.difference(from).inMinutes / (24*60)).ceil();
+  }
+
+  int getCountDays() {
+    DateTime from = DateFormatter.getDateTime(startBookingDate);
+    DateTime to = DateFormatter.getDateTime(endBookingDate);
+    return daysBetween(from, to);
+  }
+
   //Regular booking bloc
   PresentationBookingRequest getRegularBookRequest() {
     String carId = car?.id ?? "";
     PresentationClient clientInfo = PresentationClient(
       firstName: nameController.text,
       lastName: surnameController.text,
+      patronymic: patronymicController.text,
       email: emailController.text,
+      phone: phoneController.text,
+      country: fromRussia ?
+      LocaleKeys.russia.tr() : null,
       clientId: idClient,
     );
     List<PresentationOrderExtra> extras = car
@@ -370,6 +384,12 @@ class BookingViewModel {
     return checker;
   }
 
+  //////////////////////
+  //////////////////////
+  //////////////////////
+  //////////////////////
+  //////////////////////
+  //////////////////////
   //New booking bloc
   PresentationBookingRequest getNewBookRequest() {
     String carId = car?.id ?? "";

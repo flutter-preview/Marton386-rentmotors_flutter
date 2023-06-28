@@ -1,3 +1,4 @@
+import 'dart:io';
 import '../../../data/models/requests/booking_request/data_booking_request.dart';
 import '../../../presentation/models/requests/presentation_booking_request.dart';
 
@@ -41,6 +42,7 @@ class DomainBookingRequest {
   }
 
   DataBookingRequest toData() {
+    String platform = Platform.isIOS ? "IOS" : "ANDROID";
     return DataBookingRequest(
       car_id: carId,
       client_info: clientInfo.toDomain(),
@@ -50,6 +52,8 @@ class DomainBookingRequest {
       dl_info: (dlInfo != null)
           ? dlInfo?.toData()
           : null,
+      extra_data: [PlatformData(data: platform, length: 0, required: false,
+          title: 'OS', type: 'string')],
       extras: extras.map((elem) => elem.toData()).toList(),
       flight_number: flightNumber,
       comments: comments,
@@ -99,7 +103,7 @@ class DomainClient {
     return Client(
       first_name: firstName,
       last_name: lastName,
-      patronymic: patronymic,
+      patronomic: patronymic,
       phone: phone,
       email: email,
       country: country,

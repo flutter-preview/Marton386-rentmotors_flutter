@@ -20,6 +20,9 @@ _$_DataBookingRequest _$$_DataBookingRequestFromJson(
       extras: (json['extras'] as List<dynamic>)
           .map((e) => OrderExtra.fromJson(e as Map<String, dynamic>))
           .toList(),
+      extra_data: (json['extra_data'] as List<dynamic>)
+          .map((e) => PlatformData.fromJson(e as Map<String, dynamic>))
+          .toList(),
       flight_number: json['flight_number'] as String,
       comments: json['comments'] as String,
       new_client: json['new_client'] as int,
@@ -33,15 +36,34 @@ Map<String, dynamic> _$$_DataBookingRequestToJson(
       'passport_info': instance.passport_info,
       'dl_info': instance.dl_info,
       'extras': instance.extras,
+      'extra_data': instance.extra_data,
       'flight_number': instance.flight_number,
       'comments': instance.comments,
       'new_client': instance.new_client,
     };
 
+_$_PlatformData _$$_PlatformDataFromJson(Map<String, dynamic> json) =>
+    _$_PlatformData(
+      data: json['data'] as String,
+      length: json['length'] as int,
+      required: json['required'] as bool,
+      title: json['title'] as String,
+      type: json['type'] as String,
+    );
+
+Map<String, dynamic> _$$_PlatformDataToJson(_$_PlatformData instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+      'length': instance.length,
+      'required': instance.required,
+      'title': instance.title,
+      'type': instance.type,
+    };
+
 _$_Client _$$_ClientFromJson(Map<String, dynamic> json) => _$_Client(
       first_name: json['first_name'] as String,
       last_name: json['last_name'] as String,
-      patronymic: json['patronymic'] as String?,
+      patronomic: json['patronomic'] as String?,
       phone: json['phone'] as String?,
       email: json['email'] as String,
       country: json['country'] as String?,
@@ -53,7 +75,7 @@ _$_Client _$$_ClientFromJson(Map<String, dynamic> json) => _$_Client(
 Map<String, dynamic> _$$_ClientToJson(_$_Client instance) => <String, dynamic>{
       'first_name': instance.first_name,
       'last_name': instance.last_name,
-      'patronymic': instance.patronymic,
+      'patronomic': instance.patronomic,
       'phone': instance.phone,
       'email': instance.email,
       'country': instance.country,

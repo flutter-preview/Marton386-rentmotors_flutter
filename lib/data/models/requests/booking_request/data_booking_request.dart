@@ -15,6 +15,8 @@ class DataBookingRequest with _$DataBookingRequest {
     DriverLicense? dl_info,
     required List<OrderExtra> extras,
     // ignore: non_constant_identifier_names
+    required List<PlatformData> extra_data,
+    // ignore: non_constant_identifier_names
     required String flight_number,
     required String comments,
     // ignore: non_constant_identifier_names
@@ -24,6 +26,18 @@ class DataBookingRequest with _$DataBookingRequest {
   factory DataBookingRequest.fromJson(Map<String, dynamic> json) => _$DataBookingRequestFromJson(json);
 }
 
+@freezed
+class PlatformData with _$PlatformData {
+  const factory PlatformData({
+    required String data,
+    required int length,
+    required bool required,
+    required String title,
+    required String type,
+  }) = _PlatformData;
+
+  factory PlatformData.fromJson(Map<String, dynamic> json) => _$PlatformDataFromJson(json);
+}
 
 @freezed
 class Client with _$Client {
@@ -32,7 +46,7 @@ class Client with _$Client {
     required String first_name,
     // ignore: non_constant_identifier_names
     required String last_name,
-    String? patronymic,
+    String? patronomic,
     String? phone,
     required String email,
     String? country,

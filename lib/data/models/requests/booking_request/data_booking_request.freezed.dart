@@ -30,6 +30,8 @@ mixin _$DataBookingRequest {
   DriverLicense? get dl_info => throw _privateConstructorUsedError;
   List<OrderExtra> get extras =>
       throw _privateConstructorUsedError; // ignore: non_constant_identifier_names
+  List<PlatformData> get extra_data =>
+      throw _privateConstructorUsedError; // ignore: non_constant_identifier_names
   String get flight_number => throw _privateConstructorUsedError;
   String get comments =>
       throw _privateConstructorUsedError; // ignore: non_constant_identifier_names
@@ -53,6 +55,7 @@ abstract class $DataBookingRequestCopyWith<$Res> {
       Passport? passport_info,
       DriverLicense? dl_info,
       List<OrderExtra> extras,
+      List<PlatformData> extra_data,
       String flight_number,
       String comments,
       int new_client});
@@ -80,6 +83,7 @@ class _$DataBookingRequestCopyWithImpl<$Res, $Val extends DataBookingRequest>
     Object? passport_info = freezed,
     Object? dl_info = freezed,
     Object? extras = null,
+    Object? extra_data = null,
     Object? flight_number = null,
     Object? comments = null,
     Object? new_client = null,
@@ -105,6 +109,10 @@ class _$DataBookingRequestCopyWithImpl<$Res, $Val extends DataBookingRequest>
           ? _value.extras
           : extras // ignore: cast_nullable_to_non_nullable
               as List<OrderExtra>,
+      extra_data: null == extra_data
+          ? _value.extra_data
+          : extra_data // ignore: cast_nullable_to_non_nullable
+              as List<PlatformData>,
       flight_number: null == flight_number
           ? _value.flight_number
           : flight_number // ignore: cast_nullable_to_non_nullable
@@ -167,6 +175,7 @@ abstract class _$$_DataBookingRequestCopyWith<$Res>
       Passport? passport_info,
       DriverLicense? dl_info,
       List<OrderExtra> extras,
+      List<PlatformData> extra_data,
       String flight_number,
       String comments,
       int new_client});
@@ -195,6 +204,7 @@ class __$$_DataBookingRequestCopyWithImpl<$Res>
     Object? passport_info = freezed,
     Object? dl_info = freezed,
     Object? extras = null,
+    Object? extra_data = null,
     Object? flight_number = null,
     Object? comments = null,
     Object? new_client = null,
@@ -220,6 +230,10 @@ class __$$_DataBookingRequestCopyWithImpl<$Res>
           ? _value._extras
           : extras // ignore: cast_nullable_to_non_nullable
               as List<OrderExtra>,
+      extra_data: null == extra_data
+          ? _value._extra_data
+          : extra_data // ignore: cast_nullable_to_non_nullable
+              as List<PlatformData>,
       flight_number: null == flight_number
           ? _value.flight_number
           : flight_number // ignore: cast_nullable_to_non_nullable
@@ -245,10 +259,12 @@ class _$_DataBookingRequest implements _DataBookingRequest {
       this.passport_info,
       this.dl_info,
       required final List<OrderExtra> extras,
+      required final List<PlatformData> extra_data,
       required this.flight_number,
       required this.comments,
       required this.new_client})
-      : _extras = extras;
+      : _extras = extras,
+        _extra_data = extra_data;
 
   factory _$_DataBookingRequest.fromJson(Map<String, dynamic> json) =>
       _$$_DataBookingRequestFromJson(json);
@@ -274,6 +290,16 @@ class _$_DataBookingRequest implements _DataBookingRequest {
   }
 
 // ignore: non_constant_identifier_names
+  final List<PlatformData> _extra_data;
+// ignore: non_constant_identifier_names
+  @override
+  List<PlatformData> get extra_data {
+    if (_extra_data is EqualUnmodifiableListView) return _extra_data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_extra_data);
+  }
+
+// ignore: non_constant_identifier_names
   @override
   final String flight_number;
   @override
@@ -284,7 +310,7 @@ class _$_DataBookingRequest implements _DataBookingRequest {
 
   @override
   String toString() {
-    return 'DataBookingRequest(car_id: $car_id, client_info: $client_info, passport_info: $passport_info, dl_info: $dl_info, extras: $extras, flight_number: $flight_number, comments: $comments, new_client: $new_client)';
+    return 'DataBookingRequest(car_id: $car_id, client_info: $client_info, passport_info: $passport_info, dl_info: $dl_info, extras: $extras, extra_data: $extra_data, flight_number: $flight_number, comments: $comments, new_client: $new_client)';
   }
 
   @override
@@ -299,6 +325,8 @@ class _$_DataBookingRequest implements _DataBookingRequest {
                 other.passport_info == passport_info) &&
             (identical(other.dl_info, dl_info) || other.dl_info == dl_info) &&
             const DeepCollectionEquality().equals(other._extras, _extras) &&
+            const DeepCollectionEquality()
+                .equals(other._extra_data, _extra_data) &&
             (identical(other.flight_number, flight_number) ||
                 other.flight_number == flight_number) &&
             (identical(other.comments, comments) ||
@@ -316,6 +344,7 @@ class _$_DataBookingRequest implements _DataBookingRequest {
       passport_info,
       dl_info,
       const DeepCollectionEquality().hash(_extras),
+      const DeepCollectionEquality().hash(_extra_data),
       flight_number,
       comments,
       new_client);
@@ -342,6 +371,7 @@ abstract class _DataBookingRequest implements DataBookingRequest {
       final Passport? passport_info,
       final DriverLicense? dl_info,
       required final List<OrderExtra> extras,
+      required final List<PlatformData> extra_data,
       required final String flight_number,
       required final String comments,
       required final int new_client}) = _$_DataBookingRequest;
@@ -360,6 +390,8 @@ abstract class _DataBookingRequest implements DataBookingRequest {
   @override
   List<OrderExtra> get extras;
   @override // ignore: non_constant_identifier_names
+  List<PlatformData> get extra_data;
+  @override // ignore: non_constant_identifier_names
   String get flight_number;
   @override
   String get comments;
@@ -368,6 +400,220 @@ abstract class _DataBookingRequest implements DataBookingRequest {
   @override
   @JsonKey(ignore: true)
   _$$_DataBookingRequestCopyWith<_$_DataBookingRequest> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+PlatformData _$PlatformDataFromJson(Map<String, dynamic> json) {
+  return _PlatformData.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PlatformData {
+  String get data => throw _privateConstructorUsedError;
+  int get length => throw _privateConstructorUsedError;
+  bool get required => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PlatformDataCopyWith<PlatformData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PlatformDataCopyWith<$Res> {
+  factory $PlatformDataCopyWith(
+          PlatformData value, $Res Function(PlatformData) then) =
+      _$PlatformDataCopyWithImpl<$Res, PlatformData>;
+  @useResult
+  $Res call(
+      {String data, int length, bool required, String title, String type});
+}
+
+/// @nodoc
+class _$PlatformDataCopyWithImpl<$Res, $Val extends PlatformData>
+    implements $PlatformDataCopyWith<$Res> {
+  _$PlatformDataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? length = null,
+    Object? required = null,
+    Object? title = null,
+    Object? type = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as String,
+      length: null == length
+          ? _value.length
+          : length // ignore: cast_nullable_to_non_nullable
+              as int,
+      required: null == required
+          ? _value.required
+          : required // ignore: cast_nullable_to_non_nullable
+              as bool,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_PlatformDataCopyWith<$Res>
+    implements $PlatformDataCopyWith<$Res> {
+  factory _$$_PlatformDataCopyWith(
+          _$_PlatformData value, $Res Function(_$_PlatformData) then) =
+      __$$_PlatformDataCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String data, int length, bool required, String title, String type});
+}
+
+/// @nodoc
+class __$$_PlatformDataCopyWithImpl<$Res>
+    extends _$PlatformDataCopyWithImpl<$Res, _$_PlatformData>
+    implements _$$_PlatformDataCopyWith<$Res> {
+  __$$_PlatformDataCopyWithImpl(
+      _$_PlatformData _value, $Res Function(_$_PlatformData) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? length = null,
+    Object? required = null,
+    Object? title = null,
+    Object? type = null,
+  }) {
+    return _then(_$_PlatformData(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as String,
+      length: null == length
+          ? _value.length
+          : length // ignore: cast_nullable_to_non_nullable
+              as int,
+      required: null == required
+          ? _value.required
+          : required // ignore: cast_nullable_to_non_nullable
+              as bool,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_PlatformData implements _PlatformData {
+  const _$_PlatformData(
+      {required this.data,
+      required this.length,
+      required this.required,
+      required this.title,
+      required this.type});
+
+  factory _$_PlatformData.fromJson(Map<String, dynamic> json) =>
+      _$$_PlatformDataFromJson(json);
+
+  @override
+  final String data;
+  @override
+  final int length;
+  @override
+  final bool required;
+  @override
+  final String title;
+  @override
+  final String type;
+
+  @override
+  String toString() {
+    return 'PlatformData(data: $data, length: $length, required: $required, title: $title, type: $type)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PlatformData &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.length, length) || other.length == length) &&
+            (identical(other.required, required) ||
+                other.required == required) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, data, length, required, title, type);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PlatformDataCopyWith<_$_PlatformData> get copyWith =>
+      __$$_PlatformDataCopyWithImpl<_$_PlatformData>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PlatformDataToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PlatformData implements PlatformData {
+  const factory _PlatformData(
+      {required final String data,
+      required final int length,
+      required final bool required,
+      required final String title,
+      required final String type}) = _$_PlatformData;
+
+  factory _PlatformData.fromJson(Map<String, dynamic> json) =
+      _$_PlatformData.fromJson;
+
+  @override
+  String get data;
+  @override
+  int get length;
+  @override
+  bool get required;
+  @override
+  String get title;
+  @override
+  String get type;
+  @override
+  @JsonKey(ignore: true)
+  _$$_PlatformDataCopyWith<_$_PlatformData> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -381,7 +627,7 @@ mixin _$Client {
   String get first_name =>
       throw _privateConstructorUsedError; // ignore: non_constant_identifier_names
   String get last_name => throw _privateConstructorUsedError;
-  String? get patronymic => throw _privateConstructorUsedError;
+  String? get patronomic => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String? get country => throw _privateConstructorUsedError;
@@ -403,7 +649,7 @@ abstract class $ClientCopyWith<$Res> {
   $Res call(
       {String first_name,
       String last_name,
-      String? patronymic,
+      String? patronomic,
       String? phone,
       String email,
       String? country,
@@ -427,7 +673,7 @@ class _$ClientCopyWithImpl<$Res, $Val extends Client>
   $Res call({
     Object? first_name = null,
     Object? last_name = null,
-    Object? patronymic = freezed,
+    Object? patronomic = freezed,
     Object? phone = freezed,
     Object? email = null,
     Object? country = freezed,
@@ -444,9 +690,9 @@ class _$ClientCopyWithImpl<$Res, $Val extends Client>
           ? _value.last_name
           : last_name // ignore: cast_nullable_to_non_nullable
               as String,
-      patronymic: freezed == patronymic
-          ? _value.patronymic
-          : patronymic // ignore: cast_nullable_to_non_nullable
+      patronomic: freezed == patronomic
+          ? _value.patronomic
+          : patronomic // ignore: cast_nullable_to_non_nullable
               as String?,
       phone: freezed == phone
           ? _value.phone
@@ -485,7 +731,7 @@ abstract class _$$_ClientCopyWith<$Res> implements $ClientCopyWith<$Res> {
   $Res call(
       {String first_name,
       String last_name,
-      String? patronymic,
+      String? patronomic,
       String? phone,
       String email,
       String? country,
@@ -506,7 +752,7 @@ class __$$_ClientCopyWithImpl<$Res>
   $Res call({
     Object? first_name = null,
     Object? last_name = null,
-    Object? patronymic = freezed,
+    Object? patronomic = freezed,
     Object? phone = freezed,
     Object? email = null,
     Object? country = freezed,
@@ -523,9 +769,9 @@ class __$$_ClientCopyWithImpl<$Res>
           ? _value.last_name
           : last_name // ignore: cast_nullable_to_non_nullable
               as String,
-      patronymic: freezed == patronymic
-          ? _value.patronymic
-          : patronymic // ignore: cast_nullable_to_non_nullable
+      patronomic: freezed == patronomic
+          ? _value.patronomic
+          : patronomic // ignore: cast_nullable_to_non_nullable
               as String?,
       phone: freezed == phone
           ? _value.phone
@@ -561,7 +807,7 @@ class _$_Client implements _Client {
   const _$_Client(
       {required this.first_name,
       required this.last_name,
-      this.patronymic,
+      this.patronomic,
       this.phone,
       required this.email,
       this.country,
@@ -579,7 +825,7 @@ class _$_Client implements _Client {
   @override
   final String last_name;
   @override
-  final String? patronymic;
+  final String? patronomic;
   @override
   final String? phone;
   @override
@@ -596,7 +842,7 @@ class _$_Client implements _Client {
 
   @override
   String toString() {
-    return 'Client(first_name: $first_name, last_name: $last_name, patronymic: $patronymic, phone: $phone, email: $email, country: $country, address: $address, birthday: $birthday, client_id: $client_id)';
+    return 'Client(first_name: $first_name, last_name: $last_name, patronomic: $patronomic, phone: $phone, email: $email, country: $country, address: $address, birthday: $birthday, client_id: $client_id)';
   }
 
   @override
@@ -608,8 +854,8 @@ class _$_Client implements _Client {
                 other.first_name == first_name) &&
             (identical(other.last_name, last_name) ||
                 other.last_name == last_name) &&
-            (identical(other.patronymic, patronymic) ||
-                other.patronymic == patronymic) &&
+            (identical(other.patronomic, patronomic) ||
+                other.patronomic == patronomic) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.country, country) || other.country == country) &&
@@ -623,7 +869,7 @@ class _$_Client implements _Client {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, first_name, last_name,
-      patronymic, phone, email, country, address, birthday, client_id);
+      patronomic, phone, email, country, address, birthday, client_id);
 
   @JsonKey(ignore: true)
   @override
@@ -643,7 +889,7 @@ abstract class _Client implements Client {
   const factory _Client(
       {required final String first_name,
       required final String last_name,
-      final String? patronymic,
+      final String? patronomic,
       final String? phone,
       required final String email,
       final String? country,
@@ -658,7 +904,7 @@ abstract class _Client implements Client {
   @override // ignore: non_constant_identifier_names
   String get last_name;
   @override
-  String? get patronymic;
+  String? get patronomic;
   @override
   String? get phone;
   @override
