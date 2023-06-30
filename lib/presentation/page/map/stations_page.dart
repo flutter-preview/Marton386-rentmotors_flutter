@@ -46,6 +46,7 @@ class _StationsPageState extends State<StationsPage> {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: SearchTextField(
                 showIcon: true,
+                showClear: true,
                 hintText: LocaleKeys.enter_city_name.tr(),
                 controller: stationViewModel.stationController,
                 searchSmg: () {

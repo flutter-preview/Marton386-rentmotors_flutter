@@ -85,6 +85,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     const SizedBox(height: 5),
                     SearchTextField(
                       showIcon: false,
+                      showClear: true,
                       necessarily: true,
                       hintText: LocaleKeys.booking_number.tr(),
                       controller: profViewModel.reservationController,
@@ -107,6 +108,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           const SizedBox(height: 5),
                           SearchTextField(
                             showIcon: false,
+                            showClear: true,
                             necessarily: true,
                             type: TextInputType.emailAddress,
                             hintText: LocaleKeys.email.tr(),

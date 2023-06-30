@@ -52,6 +52,7 @@ class _SearchStationState extends State<SearchStation> {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: SearchTextField(
                 showIcon: true,
+                showClear: true,
                 hintText: widget.hint,
                 controller: widget.controller,
                 searchSmg: () {

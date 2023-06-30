@@ -164,9 +164,10 @@ class _ModifyResPageState extends State<ModifyResPage> {
                   ),
                   const SizedBox(height: 8),
                   SearchTextField(
-                    type: TextInputType.emailAddress,
                     showIcon: false,
+                    showClear: true,
                     hintText: LocaleKeys.email.tr(),
+                    type: TextInputType.emailAddress,
                     controller: modifyViewModel.emailController,
                   ),
                   const SizedBox(height: 15),
@@ -176,8 +177,9 @@ class _ModifyResPageState extends State<ModifyResPage> {
                   ),
                   const SizedBox(height: 8),
                   SearchTextField(
-                    type: TextInputType.phone,
                     showIcon: false,
+                    showClear: true,
+                    type: TextInputType.phone,
                     hintText: LocaleKeys.phone.tr(),
                     controller: modifyViewModel.phoneController,
                   ),
@@ -189,6 +191,8 @@ class _ModifyResPageState extends State<ModifyResPage> {
                   const SizedBox(height: 8),
                   SearchTextField(
                     showIcon: false,
+                    firstCaps: true,
+                    showClear: true,
                     hintText: LocaleKeys.flight_number.tr(),
                     controller: modifyViewModel.flightNumberController,
                   ),
@@ -200,6 +204,8 @@ class _ModifyResPageState extends State<ModifyResPage> {
                   const SizedBox(height: 8),
                   SearchTextField(
                     showIcon: false,
+                    firstCaps: true,
+                    showClear: true,
                     hintText: LocaleKeys.special_wishes.tr(),
                     controller: modifyViewModel.commentController,
                   ),

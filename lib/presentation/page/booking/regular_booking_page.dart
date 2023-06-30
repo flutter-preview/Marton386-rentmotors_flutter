@@ -56,8 +56,10 @@ class _RegularBookingPageState extends State<RegularBookingPage> {
               ),
               const SizedBox(height: 5),
               SearchTextField(
-                necessarily: true,
                 showIcon: false,
+                firstCaps: true,
+                showClear: true,
+                necessarily: true,
                 controller: bookViewModel.surnameController,
               ),
               const SizedBox(height: 10),
@@ -67,8 +69,10 @@ class _RegularBookingPageState extends State<RegularBookingPage> {
               ),
               const SizedBox(height: 5),
               SearchTextField(
-                necessarily: true,
                 showIcon: false,
+                showClear: true,
+                firstCaps: true,
+                necessarily: true,
                 controller: bookViewModel.nameController,
               ),
               const SizedBox(height: 10),
@@ -79,13 +83,17 @@ class _RegularBookingPageState extends State<RegularBookingPage> {
               const SizedBox(height: 5),
               if(bookViewModel.fromRussia)
                 SearchTextField(
-                  necessarily: true,
                   showIcon: false,
+                  firstCaps: true,
+                  showClear: true,
+                  necessarily: true,
                   controller: bookViewModel.patronymicController,
                 ),
               if(!bookViewModel.fromRussia)
                 SearchTextField(
                   showIcon: false,
+                  firstCaps: true,
+                  showClear: true,
                   controller: bookViewModel.patronymicController,
                 ),
               const SizedBox(height: 10),
@@ -118,8 +126,9 @@ class _RegularBookingPageState extends State<RegularBookingPage> {
               const SizedBox(height: 5),
               SearchTextField(
                 type: TextInputType.emailAddress,
-                necessarily: true,
                 showIcon: false,
+                showClear: true,
+                necessarily: true,
                 controller: bookViewModel.emailController,
               ),
               const SizedBox(height: 10),
@@ -129,9 +138,10 @@ class _RegularBookingPageState extends State<RegularBookingPage> {
               ),
               const SizedBox(height: 5),
               SearchTextField(
-                type: TextInputType.phone,
-                necessarily: true,
                 showIcon: false,
+                showClear: true,
+                necessarily: true,
+                type: TextInputType.phone,
                 controller: bookViewModel.phoneController,
               ),
               const SizedBox(height: 10),
@@ -142,6 +152,8 @@ class _RegularBookingPageState extends State<RegularBookingPage> {
               const SizedBox(height: 5),
               SearchTextField(
                 showIcon: false,
+                showClear: true,
+                firstCaps: true,
                 hintText: LocaleKeys.optional.tr(),
                 controller: bookViewModel.flightNumberController,
               ),
@@ -158,6 +170,8 @@ class _RegularBookingPageState extends State<RegularBookingPage> {
               const SizedBox(height: 5),
               SearchTextField(
                 showIcon: false,
+                showClear: true,
+                firstCaps: true,
                 hintText: LocaleKeys.optional.tr(),
                 controller: bookViewModel.commentController,
               ),

@@ -6,18 +6,20 @@ import 'package:rentmotors/res/generated/locale_keys.g.dart';
 class SearchTextField extends StatefulWidget {
   const SearchTextField({
     super.key,
-    required this.showIcon,
-    this.hintText,
-    this.searchSmg,
-    required this.controller,
     this.type,
     this.enabled,
+    this.hintText,
+    this.firstCaps,
+    this.searchSmg,
     this.showClear,
     this.focusNode,
     this.necessarily,
+    required this.showIcon,
+    required this.controller,
   });
   final bool? enabled;
   final bool showIcon;
+  final bool? firstCaps;
   final bool? showClear;
   final String? hintText;
   final bool? necessarily;
@@ -48,7 +50,21 @@ class _SearchTextFieldState extends State<SearchTextField> {
 
   @override
   Widget build(BuildContext context) {
+    bool firstCaps = false;
+    if (widget.firstCaps != null) {
+      firstCaps = widget.firstCaps!;
+    }
+    bool necessarily = false;
+    if (widget.necessarily != null) {
+      necessarily = widget.necessarily!;
+    }
+    bool showClear = false;
+    if (widget.showClear != null) {
+      showClear = widget.showClear!;
+    }
     return TextField(
+      textCapitalization: firstCaps ?
+      TextCapitalization.sentences : TextCapitalization.none,
       enabled: widget.enabled ?? true,
       keyboardType: widget.type ?? TextInputType.text,
       focusNode: widget.focusNode,
@@ -60,7 +76,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
           color: Global.getIconColor(context),
         ) : null,
         suffixIcon: _isTextFieldEmpty ?
-        (widget.necessarily != null) ? IconButton(
+        necessarily ? IconButton(
           icon: const Icon(Icons.error_outline),
           color: Global.red,
           onPressed: () {
@@ -69,7 +85,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           },
         ): null :
-        (widget.showClear == null) ? IconButton(
+        showClear ? IconButton(
           icon: const Icon(Icons.cancel),
           color: Global.getIconColor(context),
           onPressed: () {

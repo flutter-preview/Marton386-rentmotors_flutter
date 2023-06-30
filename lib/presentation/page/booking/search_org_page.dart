@@ -53,6 +53,7 @@ class _SearchOrgPageState extends State<SearchOrgPage> {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: SearchTextField(
                 showIcon: true,
+                showClear: true,
                 hintText: widget.hint,
                 controller: widget.controller,
                 searchSmg: () {
