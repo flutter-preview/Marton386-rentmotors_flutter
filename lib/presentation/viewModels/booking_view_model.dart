@@ -179,6 +179,18 @@ class BookingViewModel {
     return finAmount;
   }
 
+  bool checkerAddress() {
+    bool checker = true;
+    for (var extra in car!.extras) {
+      if (extra.isInputVisible() && (extra.amount > 0)) {
+        if ((extra.address == "") || (extra.address == null)) {
+          checker = false;
+        }
+      }
+    }
+    return checker;
+  }
+
   bool isValidWord(String name) {
     RegExp regExp = RegExp(r'^[a-zA-Zа-яА-Я\s\-]+$');
     return regExp.hasMatch(name) &&

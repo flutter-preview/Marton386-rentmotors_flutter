@@ -1,5 +1,7 @@
 import '../../../res/global.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:rentmotors/res/generated/locale_keys.g.dart';
 
 class ItemExtra extends StatelessWidget {
   ItemExtra({
@@ -64,34 +66,49 @@ class ItemExtra extends StatelessWidget {
                 description,
                 style: Global.nanoText,
               ),
-              const SizedBox(height: 5.0),
               if (isShowField)
                 TextField(
                   controller: textController,
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.only(left: 10.0),
+                  decoration: InputDecoration(
                     filled: true,
-                    hintStyle: Global.searchText,
+                    hintStyle: Global.hintText,
+                    hintText: LocaleKeys.enter_address.tr(),
+                    contentPadding: const EdgeInsets.only(left: 10.0, right: 0,
+                        top: 0, bottom: 0),
                   ),
                 ),
+              isShowField ?
+              const SizedBox(height: 2.0) :
+              const SizedBox(height: 5.0),
             ],
           ),
         ),
         const SizedBox(width: 20.0),
-        //const Spacer(),
-        !isCounted
-            ? InkWell(
+        !isCounted ?
+        InkWell(
           onTap: onTaped,
-          child: Container(
+          child: isSelected ?  Container(
             padding: EdgeInsets.zero,
-            child: Icon(
+            child: const Icon(
               Icons.check_circle,
               size: 34.0,
-              color: isSelected ? Global.green : Global.getIconColor(context),
+              color: Global.green,
+            ),
+          ) :
+          Padding(
+            padding: const EdgeInsets.only(right: 2),
+            child: Container(
+              width: 30.0,
+              height: 30.0,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: isSelected ? Global.green : Global.getIconColor(context),
+              ),
+              child: const Center(),
             ),
           ),
-        )
-            : GestureDetector(
+        ) :
+        GestureDetector(
           onTap: () {
             onTaped();
           },

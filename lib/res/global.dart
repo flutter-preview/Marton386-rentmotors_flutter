@@ -81,6 +81,10 @@ class Global {
     fontSize: 12,
     fontWeight: FontWeight.bold,
   );
+  static const TextStyle hintText = TextStyle(
+    color: grey,
+    fontSize: 12,
+  );
   static const TextStyle facilitiesText = TextStyle(
     color: grey,
     fontSize: 12,

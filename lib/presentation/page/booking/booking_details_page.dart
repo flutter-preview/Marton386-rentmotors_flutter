@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import '../../widgets/booking/car_info.dart';
 import '../../widgets/next_button_widget.dart';
 import '../../widgets/booking/dates_widget.dart';
+import '../../viewModels/booking_view_model.dart';
 import '../../widgets/booking/extras_layout.dart';
 import '../../widgets/profile/my_fees_widget.dart';
-import '../../viewModels/booking_view_model.dart';
+import 'package:rentmotors/utils/alerts_shower.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:rentmotors/res/generated/locale_keys.g.dart';
 
@@ -20,7 +21,7 @@ class BookingDetailsPage extends StatefulWidget {
 class _BookingDetailsPageState extends State<BookingDetailsPage> {
   final BookingViewModel startBookViewModel =
       GetIt.instance<BookingViewModel>();
-  String updater = ""; ///максимальный костыль, который надо переделать когда-нибудь
+  String updater = "";
 
   @override
   Widget build(BuildContext context) {
@@ -84,10 +85,14 @@ class _BookingDetailsPageState extends State<BookingDetailsPage> {
             NextButtonWidget(
               text: LocaleKeys.continue_booking.tr(),
               nextAct: () {
-                Navigator.pushNamed(
-                  context,
-                  "mainPage/searchCars/chooseExtras/regularBook",
-                );
+                if (startBookViewModel.checkerAddress()) {
+                  Navigator.pushNamed(
+                    context,
+                    "mainPage/searchCars/chooseExtras/regularBook",
+                  );
+                } else {
+                  AlertsShower.showAlert(context, "${LocaleKeys.enter_address.tr()}!");
+                }
               },
             ),
           ],
