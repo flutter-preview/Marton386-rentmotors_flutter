@@ -69,6 +69,19 @@ class _DateTimeWidgetState extends State<DateTimeWidget> {
                   initialDate: DateFormatter.getDateTime(widget.dateTime),
                   firstDate: DateTime.now(),
                   lastDate: DateTime(2100),
+                  builder: (BuildContext context, Widget? child) {
+                    return Theme(
+                      data: ThemeData(
+                        colorScheme: const ColorScheme.light(
+                          primary: Global.darkGreen,
+                        ),
+                        buttonTheme: const ButtonThemeData(
+                          textTheme: ButtonTextTheme.primary,
+                        ),
+                      ),
+                      child: child!,
+                    );
+                  },
                 );
                 if ((picked != null) && (picked.toString() != "")) {
                   setState(() {
@@ -107,6 +120,19 @@ class _DateTimeWidgetState extends State<DateTimeWidget> {
               final TimeOfDay? picked = await showTimePicker(
                 context: widget.context,
                 initialTime: DateFormatter.getTime(widget.dateTime),
+                builder: (BuildContext context, Widget? child) {
+                  return Theme(
+                    data: ThemeData(
+                      colorScheme: const ColorScheme.light(
+                        primary: Global.darkGreen,
+                      ),
+                      buttonTheme: const ButtonThemeData(
+                        textTheme: ButtonTextTheme.primary,
+                      ),
+                    ),
+                    child: child!,
+                  );
+                },
               );
               if ((picked != null) && (picked.toString() != "")) {
                 setState(() {

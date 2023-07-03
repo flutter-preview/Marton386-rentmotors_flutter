@@ -63,6 +63,19 @@ class _NewBookingPageState extends State<NewBookingPage> {
                     initialDate: DateFormatter.getDateTime(birthInitialDate),
                     firstDate: DateTime(1920),
                     lastDate: DateFormatter.getDateTime(birthInitialDate),
+                    builder: (BuildContext context, Widget? child) {
+                      return Theme(
+                        data: ThemeData(
+                          colorScheme: const ColorScheme.light(
+                            primary: Global.darkGreen,
+                          ),
+                          buttonTheme: const ButtonThemeData(
+                            textTheme: ButtonTextTheme.primary,
+                          ),
+                        ),
+                        child: child!,
+                      );
+                    },
                   );
                   if ((picked != null) && (picked.toString() != "")) {
                     setState(() {
@@ -136,6 +149,19 @@ class _NewBookingPageState extends State<NewBookingPage> {
                               ),
                               firstDate: DateTime(1920),
                               lastDate: DateTime.now(),
+                              builder: (BuildContext context, Widget? child) {
+                                return Theme(
+                                  data: ThemeData(
+                                    colorScheme: const ColorScheme.light(
+                                      primary: Global.darkGreen,
+                                    ),
+                                    buttonTheme: const ButtonThemeData(
+                                      textTheme: ButtonTextTheme.primary,
+                                    ),
+                                  ),
+                                  child: child!,
+                                );
+                              },
                             );
                             if ((picked != null) && (picked.toString() != "")) {
                               setState(() {
@@ -291,6 +317,19 @@ class _NewBookingPageState extends State<NewBookingPage> {
                               ),
                               firstDate: DateTime(1920),
                               lastDate: DateTime.now(),
+                              builder: (BuildContext context, Widget? child) {
+                                return Theme(
+                                  data: ThemeData(
+                                    colorScheme: const ColorScheme.light(
+                                      primary: Global.darkGreen,
+                                    ),
+                                    buttonTheme: const ButtonThemeData(
+                                      textTheme: ButtonTextTheme.primary,
+                                    ),
+                                  ),
+                                  child: child!,
+                                );
+                              },
                             );
                             if ((picked != null) && (picked.toString() != "")) {
                               setState(() {
